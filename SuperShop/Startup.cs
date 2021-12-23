@@ -46,6 +46,8 @@ namespace SuperShop
 
             services.AddScoped<IProductRepository, ProductRepository>();
 
+            
+
             services.AddControllersWithViews();
         }
 
