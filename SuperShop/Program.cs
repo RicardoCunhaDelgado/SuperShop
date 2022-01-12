@@ -29,6 +29,7 @@ namespace SuperShop
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                }
+                );
     }
 }
