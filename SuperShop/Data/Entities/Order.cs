@@ -24,6 +24,9 @@ namespace SuperShop.Data.Entities
         [Required]
         public User User { get; set; }
 
+        [DisplayFormat(DataFormatString ="{0:N0}")]
+        public int Lines => Items == null ? 0 : Items.Count();
+
         public IEnumerable<OrderDetail> Items { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:N2}")]
@@ -32,5 +35,9 @@ namespace SuperShop.Data.Entities
 
         [DisplayFormat(DataFormatString = "{0:C2}")]
         public decimal Value => Items == null ? 0 : Items.Sum(i => i.Value);
+
+        [Display(Name ="Order date")]
+        [DisplayFormat(DataFormatString = "{0:mm/dd/yyyy HH:mm}", ApplyFormatInEditMode = false)]
+        public DateTime? OrderDateLocal => this.OrderDate == null ? null : this.OrderDate.ToLocalTime();
     }
 }
