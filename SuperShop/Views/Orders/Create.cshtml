@@ -44,17 +44,15 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Value)
                 </td>
-                <td>
+                <td id="@item.Id">
                     <a asp-action="Increase" asp-route-id="@item.Id" class="btn btn-warning"><i class="fa fa-plus"></i></a>
                     <a asp-action="Decrease" asp-route-id="@item.Id" class="btn btn-info"><i class="fa fa-minus"></i></a>
-                    <a asp-action="DeleteItem" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    <a asp-action="DeleteItem" asp-route-id="@item.Id" class="btn btn-danger" id="btnDeleteItem">Delete</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-
-
 
 <div id="confirmDialog" class="modal fade">
     <div class="modal-dialog modal-sm">
@@ -92,32 +90,33 @@
     </div>
 </div>
 
+
+
 @section Scripts{
     <script type="text/javascript">
-        $(document).ready(function(){
+        $(document).ready(function () {
             var id = 0;
-            $("#btnConfirm").click(function() {
+            $("#btnConfirm").click(function () {
                 $("#confirmDialog").modal("show");
                 return false;
             });
-            $("#btnNoConfirm").click(function() {
+            $("#btnNoConfirm").click(function () {
                 $("#confirmDialog").modal("hide");
                 return false;
             });
-            $("#btnYesConfirm").click(function() {
+            $("#btnYesConfirm").click(function () {
                 window.location.href = "/Orders/ConfirmOrder";
             });
-            $("a[id*=btnDeleteItem]").click(function() {
-                debugger;
-                id=$(this).parent()[0].id;
+            $("a[id*=btnDeleteItem]").click(function () {
+                id = $(this).parent()[0].id;
                 $("#deleteDialog").modal("show");
                 return false;
             });
-            $("#btnNoDelete").click(function() {
+            $("#btnNoDelete").click(function () {
                 $("#deleteDialog").modal("hide");
                 return false;
             });
-            $("#btnYesDelete").click(function() {
+            $("#btnYesDelete").click(function () {
                 window.location.href = "/Orders/DeleteItem/" + id;
             });
         });
